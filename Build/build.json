@@ -1,6 +1,6 @@
 {
-"companyName": "slbpc",
-"productName": " Winter_staying_room",
+"companyName": "DefaultCompany",
+"productName": "3Dmodeltest",
 "productVersion": "0.1",
 "dataUrl": "build.data.unityweb",
 "wasmCodeUrl": "build.wasm.code.unityweb",
