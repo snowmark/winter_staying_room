@@ -1223,7 +1223,7 @@ function _emscripten_asm_const_ii(code, a0) {
  return ASM_CONSTS[code](a0);
 }
 STATIC_BASE = GLOBAL_BASE;
-STATICTOP = STATIC_BASE + 2701200;
+STATICTOP = STATIC_BASE + 2731280;
 __ATINIT__.push({
  func: (function() {
   __GLOBAL__sub_I_AccessibilityScriptingClasses_cpp();
@@ -14484,6 +14484,11 @@ function nullFunc_viiidi(x) {
  err("Build with ASSERTIONS=2 for more info.");
  abort(x);
 }
+function nullFunc_viiif(x) {
+ err("Invalid function pointer called with signature 'viiif'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");
+ err("Build with ASSERTIONS=2 for more info.");
+ abort(x);
+}
 function nullFunc_viiifffi(x) {
  err("Invalid function pointer called with signature 'viiifffi'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");
  err("Build with ASSERTIONS=2 for more info.");
@@ -15874,6 +15879,16 @@ function invoke_viiidi(index, a1, a2, a3, a4, a5) {
   Module["setThrew"](1, 0);
  }
 }
+function invoke_viiif(index, a1, a2, a3, a4) {
+ var sp = stackSave();
+ try {
+  Module["dynCall_viiif"](index, a1, a2, a3, a4);
+ } catch (e) {
+  stackRestore(sp);
+  if (typeof e !== "number" && e !== "longjmp") throw e;
+  Module["setThrew"](1, 0);
+ }
+}
 function invoke_viiifffi(index, a1, a2, a3, a4, a5, a6, a7) {
  var sp = stackSave();
  try {
@@ -16299,6 +16314,7 @@ Module.asmLibraryArg = {
  "nullFunc_viifiiii": nullFunc_viifiiii,
  "nullFunc_viii": nullFunc_viii,
  "nullFunc_viiidi": nullFunc_viiidi,
+ "nullFunc_viiif": nullFunc_viiif,
  "nullFunc_viiifffi": nullFunc_viiifffi,
  "nullFunc_viiiffi": nullFunc_viiiffi,
  "nullFunc_viiiffii": nullFunc_viiiffii,
@@ -16452,6 +16468,7 @@ Module.asmLibraryArg = {
  "invoke_viifiiii": invoke_viifiiii,
  "invoke_viii": invoke_viii,
  "invoke_viiidi": invoke_viiidi,
+ "invoke_viiif": invoke_viiif,
  "invoke_viiifffi": invoke_viiifffi,
  "invoke_viiiffi": invoke_viiiffi,
  "invoke_viiiffii": invoke_viiiffii,
@@ -20652,6 +20669,7 @@ var dynCall_viifiii = Module["dynCall_viifiii"] = asm["dynCall_viifiii"];
 var dynCall_viifiiii = Module["dynCall_viifiiii"] = asm["dynCall_viifiiii"];
 var dynCall_viii = Module["dynCall_viii"] = asm["dynCall_viii"];
 var dynCall_viiidi = Module["dynCall_viiidi"] = asm["dynCall_viiidi"];
+var dynCall_viiif = Module["dynCall_viiif"] = asm["dynCall_viiif"];
 var dynCall_viiifffi = Module["dynCall_viiifffi"] = asm["dynCall_viiifffi"];
 var dynCall_viiiffi = Module["dynCall_viiiffi"] = asm["dynCall_viiiffi"];
 var dynCall_viiiffii = Module["dynCall_viiiffii"] = asm["dynCall_viiiffii"];
